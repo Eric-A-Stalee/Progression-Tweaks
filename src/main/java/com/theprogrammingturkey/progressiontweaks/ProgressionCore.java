@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = ProgressionCore.MODID, version = ProgressionCore.VERSION, name = ProgressionCore.NAME, dependencies = "after:gobblecore[0.1.4.18,)")
+@Mod(modid = ProgressionCore.MODID, version = ProgressionCore.VERSION, name = ProgressionCore.NAME, dependencies = "after:gobblecore")
 public class ProgressionCore implements IModCore
 {
 	public static final String MODID = "progressiontweaks";
