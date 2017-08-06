@@ -20,8 +20,8 @@ public class TileFirePitRenderer extends TileEntitySpecialRenderer<TileFirePit>
 	}
 
 	@Override
-	public void renderTileEntityAt(TileFirePit te, double x, double y, double z, float partialTicks, int destroyStage)
-	{
+    public void func_192841_a(TileFirePit te, double x, double y, double z, float partialTicks, int destroyStage, float p_192841_10_)
+    {
 		World world = te.getWorld();
 
 		if(!world.getBlockState(te.getPos()).getBlock().equals(ProgressionBlocks.FIRE_PIT_LIT) && !world.getBlockState(te.getPos()).getBlock().equals(ProgressionBlocks.FIRE_PIT_UNLIT))

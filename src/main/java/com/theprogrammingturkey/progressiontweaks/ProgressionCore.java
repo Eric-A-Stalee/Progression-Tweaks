@@ -18,7 +18,6 @@ import com.theprogrammingturkey.progressiontweaks.config.ProgressionConfigLoader
 import com.theprogrammingturkey.progressiontweaks.entity.ProgressionEntities;
 import com.theprogrammingturkey.progressiontweaks.items.ProgressionItems;
 import com.theprogrammingturkey.progressiontweaks.network.ProgressionPackets;
-import com.theprogrammingturkey.progressiontweaks.util.ProgressionAchievements;
 import com.theprogrammingturkey.progressiontweaks.util.ProgressionCrafting;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -92,7 +91,7 @@ public class ProgressionCore implements IModCore
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		ProgressionConfigLoader.loadFromConfig();
-		ProgressionAchievements.loadAchievements();
+		//ProgressionAchievements.loadAchievements();
 	}
 
 	@Override

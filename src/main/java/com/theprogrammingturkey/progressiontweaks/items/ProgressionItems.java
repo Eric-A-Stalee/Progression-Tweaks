@@ -1,10 +1,12 @@
 package com.theprogrammingturkey.progressiontweaks.items;
 
 import com.theprogrammingturkey.gobblecore.items.BaseItem;
+import com.theprogrammingturkey.gobblecore.items.BaseItemBlock;
 import com.theprogrammingturkey.gobblecore.items.BaseItemFood;
 import com.theprogrammingturkey.gobblecore.items.IItemHandler;
 import com.theprogrammingturkey.gobblecore.items.ItemLoader;
 import com.theprogrammingturkey.progressiontweaks.ProgressionCore;
+import com.theprogrammingturkey.progressiontweaks.blocks.ProgressionBlocks;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
@@ -35,6 +37,13 @@ public class ProgressionItems implements IItemHandler
 		loader.registerItem(STONE_HAMMER = new ItemStoneHammer(), "stone_hammer");
 		loader.registerItem(FLAT_BREAD = new BaseItemFood("flat_bread", 4, 0.2f, false));
 		loader.registerItem(UNFIRED_CLAY_BOWL = new BaseItem("unfired_clay_bowl"));
+
+		loader.registerBlockItem(ProgressionBlocks.FIRE_PIT_UNLIT);
+		loader.registerBlockItem(ProgressionBlocks.BLANK_TELEPORTER);
+
+		BaseItemBlock teleporter = (BaseItemBlock) Item.getItemFromBlock(ProgressionBlocks.BLANK_TELEPORTER);
+		teleporter.addLore("Problem?");
+		teleporter.setShiftToShowLore(false);
 	}
 
 	@Override

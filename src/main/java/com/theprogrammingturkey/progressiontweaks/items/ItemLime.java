@@ -1,7 +1,6 @@
 package com.theprogrammingturkey.progressiontweaks.items;
 
 import com.theprogrammingturkey.gobblecore.items.BaseItemFood;
-import com.theprogrammingturkey.progressiontweaks.util.ProgressionAchievements;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +19,7 @@ public class ItemLime extends BaseItemFood
 	{
 		if(entityLiving instanceof EntityPlayer)
 		{
-			((EntityPlayer) entityLiving).addStat(ProgressionAchievements.toTheCore);
+			//((EntityPlayer) entityLiving).addStat(ProgressionAchievements.toTheCore);
 		}
 		return super.onItemUseFinish(stack, worldIn, entityLiving);
 	}

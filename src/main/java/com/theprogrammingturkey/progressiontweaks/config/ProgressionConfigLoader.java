@@ -2,7 +2,7 @@ package com.theprogrammingturkey.progressiontweaks.config;
 
 import java.io.File;
 
-import com.theprogrammingturkey.gobblecore.config.ConfigErrorReporter;
+import com.theprogrammingturkey.gobblecore.config.QueuedMessageReporter;
 import com.theprogrammingturkey.gobblecore.util.GameUtil;
 import com.theprogrammingturkey.progressiontweaks.ProgressionCore;
 import com.theprogrammingturkey.progressiontweaks.registries.FirePitRegistry;
@@ -109,6 +109,6 @@ public class ProgressionConfigLoader
 
 	private static void error(String message)
 	{
-		ConfigErrorReporter.queueErrorMessage(TextFormatting.RED, ProgressionCore.NAME, message);
+		QueuedMessageReporter.queueErrorMessage(TextFormatting.RED, ProgressionCore.NAME, message);
 	}
 }
