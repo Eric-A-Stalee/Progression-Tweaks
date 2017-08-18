@@ -226,6 +226,7 @@ public class TileFirePit extends TileEntity implements ITickable
 		super.readFromNBT(nbt);
 		this.burnTimeLeft = nbt.getInteger("burnTime");
 		this.cookTimeLeft = nbt.getInteger("cookTimeLeft");
-		this.cooking = new ItemStack((NBTTagCompound) nbt.getTag("cookingItem"));
+		if(nbt.getTag("cookingItem") != null)
+			this.cooking = new ItemStack((NBTTagCompound) nbt.getTag("cookingItem"));
 	}
 }
