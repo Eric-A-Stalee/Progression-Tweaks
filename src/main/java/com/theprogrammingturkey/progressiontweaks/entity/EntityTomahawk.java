@@ -13,16 +13,19 @@ public class EntityTomahawk extends EntityCustomThrowable
 	public EntityTomahawk(World worldIn)
 	{
 		super(worldIn);
+		this.setDamage(5);
 	}
 
 	public EntityTomahawk(World worldIn, EntityLivingBase throwerIn)
 	{
 		super(worldIn, throwerIn);
+		this.setDamage(5);
 	}
 
 	public EntityTomahawk(World worldIn, double x, double y, double z)
 	{
 		super(worldIn, x, y, z);
+		this.setDamage(5);
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class ProgressionItems implements IItemHandler
 		loader.registerBlockItem(ProgressionBlocks.BLANK_TELEPORTER);
 
 		BaseItemBlock teleporter = (BaseItemBlock) Item.getItemFromBlock(ProgressionBlocks.BLANK_TELEPORTER);
-		teleporter.addLore("Problem?");
+		teleporter.addLore("As dark as my soul...");
 		teleporter.setShiftToShowLore(false);
 	}
 
