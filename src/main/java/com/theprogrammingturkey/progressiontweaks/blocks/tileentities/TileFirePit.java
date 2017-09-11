@@ -99,7 +99,7 @@ public class TileFirePit extends TileEntity implements ITickable
 					tileentity.validate();
 					this.worldObj.setTileEntity(pos, tileentity);
 					worldObj.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-					NetworkManager.getSimpleNetwork(ProgressionCore.instance).sendToAll(new PacketUdateFirePit(getItemCooking(), getBurnTimeLeft(), getCookTimeLeft(), getPos().getX(), getPos().getY(), getPos().getZ()));
+					sendUpdatePacket();
 				}
 				return;
 			}
@@ -119,7 +119,7 @@ public class TileFirePit extends TileEntity implements ITickable
 				tileentity.validate();
 				this.worldObj.setTileEntity(pos, tileentity);
 				burnTimeLeft = -1;
-				NetworkManager.getSimpleNetwork(ProgressionCore.instance).sendToAll(new PacketUdateFirePit(getItemCooking(), getBurnTimeLeft(), getCookTimeLeft(), getPos().getX(), getPos().getY(), getPos().getZ()));
+				sendUpdatePacket();
 			}
 
 			if(cookTimeLeft == 0)
@@ -130,7 +130,7 @@ public class TileFirePit extends TileEntity implements ITickable
 					this.setCooking(result.getResult());
 					this.worldObj.spawnEntityInWorld(new EntityXPOrb(worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ(), result.getXp()));
 					cookTimeLeft = -1;
-					NetworkManager.getSimpleNetwork(ProgressionCore.instance).sendToAll(new PacketUdateFirePit(getItemCooking(), getBurnTimeLeft(), getCookTimeLeft(), getPos().getX(), getPos().getY(), getPos().getZ()));
+					sendUpdatePacket();
 				}
 			}
 		}
@@ -169,12 +169,23 @@ public class TileFirePit extends TileEntity implements ITickable
 	public void startBurnTime(int burnTime)
 	{
 		this.burnTimeLeft = burnTime;
-		TileEntity tileentity = this.worldObj.getTileEntity(pos);
 		this.worldObj.setBlockState(pos, ProgressionBlocks.FIRE_PIT_LIT.getDefaultState());
 		this.worldObj.setBlockState(pos, ProgressionBlocks.FIRE_PIT_LIT.getDefaultState());
-		tileentity.validate();
-		this.worldObj.setTileEntity(pos, tileentity);
-		NetworkManager.getSimpleNetwork(ProgressionCore.instance).sendToAll(new PacketUdateFirePit(getItemCooking(), getBurnTimeLeft(), getCookTimeLeft(), getPos().getX(), getPos().getY(), getPos().getZ()));
+		this.validate();
+		this.worldObj.setTileEntity(pos, this);
+		sendUpdatePacket();
+	}
+
+	public void sendUpdatePacket()
+	{
+		Scheduler.scheduleTask(new Task("Delayed Packet", 2)
+		{
+			@Override
+			public void callback()
+			{
+				NetworkManager.getSimpleNetwork(ProgressionCore.instance).sendToAll(new PacketUdateFirePit(getItemCooking(), getBurnTimeLeft(), getCookTimeLeft(), getPos().getX(), getPos().getY(), getPos().getZ()));
+			}
+		});
 	}
 
 	public void setBurnTimeLeft(int burnTime)

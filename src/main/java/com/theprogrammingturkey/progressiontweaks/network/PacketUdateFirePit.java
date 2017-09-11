@@ -72,13 +72,14 @@ public class PacketUdateFirePit implements IMessage
 			TileEntity firepit;
 
 			if((firepit = ProgressionCore.proxy.getClientPlayer().worldObj.getTileEntity(new BlockPos(message.x, message.y, message.z))) != null)
+			{
 				if(firepit instanceof TileFirePit)
 				{
 					((TileFirePit) firepit).setBurnTimeLeft(message.burnTime);
 					((TileFirePit) firepit).setCookTimeLeft(message.burnTime);
 					((TileFirePit) firepit).setCooking(message.cooking);
 				}
-
+			}
 			return null;
 
 		}
