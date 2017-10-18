@@ -81,7 +81,7 @@ public class BlockFirePit extends BaseBlock implements ITileEntityProvider
 				int burntime = FirePitRegistry.INSTANCE.getBurnTimeFromFuel(heldItem);
 				if(burntime != -1)
 				{
-					te.startBurnTime(burntime);
+					te.addBurnTime(burntime);
 					player.inventory.decrStackSize(player.inventory.currentItem, 1);
 					world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 					flag = true;

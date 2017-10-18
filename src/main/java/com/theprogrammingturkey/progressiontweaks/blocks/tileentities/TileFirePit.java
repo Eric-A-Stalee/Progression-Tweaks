@@ -166,13 +166,20 @@ public class TileFirePit extends TileEntity implements ITickable
 		}
 	}
 
-	public void startBurnTime(int burnTime)
+	public void addBurnTime(int burnTime)
 	{
-		this.burnTimeLeft = burnTime;
-		this.worldObj.setBlockState(pos, ProgressionBlocks.FIRE_PIT_LIT.getDefaultState());
-		this.worldObj.setBlockState(pos, ProgressionBlocks.FIRE_PIT_LIT.getDefaultState());
-		this.validate();
-		this.worldObj.setTileEntity(pos, this);
+		if(burnTimeLeft <= 0)
+		{
+			this.burnTimeLeft = burnTime;
+			this.worldObj.setBlockState(pos, ProgressionBlocks.FIRE_PIT_LIT.getDefaultState());
+			this.worldObj.setBlockState(pos, ProgressionBlocks.FIRE_PIT_LIT.getDefaultState());
+			this.validate();
+			this.worldObj.setTileEntity(pos, this);
+		}
+		else
+		{
+			this.burnTimeLeft += burnTime;
+		}
 		sendUpdatePacket();
 	}
 
