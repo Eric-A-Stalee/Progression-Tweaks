@@ -46,20 +46,20 @@ public abstract class EntityCustomThrowable extends Entity implements IProjectil
 		}
 	});
 
-	private int xTile;
-	private int yTile;
-	private int zTile;
-	private Block inTile;
-	private int inData;
+	protected int xTile;
+	protected int yTile;
+	protected int zTile;
+	protected Block inTile;
+	protected int inData;
 	protected boolean inGround;
 	protected int timeInGround;
 	/** Seems to be some sort of timer for animating an arrow. */
 	public int arrowShake;
 	/** The owner of this arrow. */
 	public Entity shootingEntity;
-	private int ticksInGround;
-	private int ticksInAir;
-	private double damage = 0;
+	protected int ticksInGround;
+	protected int ticksInAir;
+	protected double damage = 0;
 
 	public EntityCustomThrowable(World worldIn)
 	{

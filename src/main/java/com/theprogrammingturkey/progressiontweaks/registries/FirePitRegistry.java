@@ -3,7 +3,6 @@ package com.theprogrammingturkey.progressiontweaks.registries;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class FirePitRegistry
@@ -14,8 +13,7 @@ public class FirePitRegistry
 
 	public FirePitRegistry()
 	{
-		cookingRegistry.put(new ItemStack(Items.FISH), new CookingResult(new ItemStack(Items.COOKED_FISH), 200, 10));
-		cookingFuelRegistry.put(new ItemStack(Items.COAL), 10000);
+		
 	}
 
 	public void clearRegistry()

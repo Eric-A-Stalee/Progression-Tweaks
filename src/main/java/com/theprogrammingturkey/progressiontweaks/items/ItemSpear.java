@@ -2,15 +2,19 @@ package com.theprogrammingturkey.progressiontweaks.items;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Multimap;
 import com.theprogrammingturkey.gobblecore.items.BaseItem;
 import com.theprogrammingturkey.progressiontweaks.ProgressionCore;
 import com.theprogrammingturkey.progressiontweaks.entity.EntitySpear;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemBow;
@@ -32,6 +36,8 @@ public class ItemSpear extends BaseItem
 	{
 		super("spear");
 		super.setMaxStackSize(1);
+		super.addLore("Did you know you can throw the spear?");
+		super.addLore("Simply use it like you would a bow!");
 		super.addLore("Deals +10 Damage to mobs smaller than a block");
 		this.addPropertyOverride(new ResourceLocation(ProgressionCore.MODID, "pull"), new IItemPropertyGetter()
 		{
@@ -110,5 +116,18 @@ public class ItemSpear extends BaseItem
 		player.setActiveHand(hand);
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
+	
+    public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
+    {
+        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
+
+		if(equipmentSlot == EntityEquipmentSlot.MAINHAND)
+        {
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 3, 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -1.5D, 0));
+        }
+
+        return multimap;
+    }
 
 }

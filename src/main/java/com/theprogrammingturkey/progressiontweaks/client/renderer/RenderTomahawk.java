@@ -25,15 +25,14 @@ public class RenderTomahawk extends Render<EntityTomahawk>
 	public void doRender(EntityTomahawk entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
+		GlStateManager.disableLighting();
 		GlStateManager.translate((float) x, (float) y, (float) z);
-		GlStateManager.enableRescaleNormal();
-		GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90.0F, 0.0F, 1.0F, 0.0F);
-		GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
 		if(!entity.isInBlock())
-		{
-			entity.rot += 3;
-			GlStateManager.rotate(entity.rot, 1.0F, 0.0F, 0.0F);
-		}
+			entity.rotationPitch += 10;
+		GlStateManager.rotate(entity.rotationYaw, 0.0F, 1.0F, 0.0F);
+		GlStateManager.rotate(0, 0.0F, 1.0F, 1.0F);
+		GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks + 90f, 0.0F, 0.0F, 1.0F);
+		GlStateManager.enableRescaleNormal();
 		this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
 		if(this.renderOutlines)

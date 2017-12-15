@@ -229,12 +229,14 @@ public class TileFirePit extends TileEntity implements ITickable
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
+		nbt = super.writeToNBT(nbt);
 		nbt.setInteger("burnTime", this.burnTimeLeft);
 		nbt.setInteger("cookTimeLeft", this.cookTimeLeft);
 		NBTTagCompound cookingNBT = new NBTTagCompound();
 		if(this.cooking != null)
 			this.cooking.writeToNBT(cookingNBT);
 		nbt.setTag("cookingItem", cookingNBT);
+		System.out.println(nbt.toString());
 		return nbt;
 	}
 
@@ -244,7 +246,14 @@ public class TileFirePit extends TileEntity implements ITickable
 		super.readFromNBT(nbt);
 		this.burnTimeLeft = nbt.getInteger("burnTime");
 		this.cookTimeLeft = nbt.getInteger("cookTimeLeft");
+		System.out.println(nbt.toString());
 		if(nbt.getTag("cookingItem") != null)
+		{
+			
 			this.cooking = new ItemStack((NBTTagCompound) nbt.getTag("cookingItem"));
+		}
+
+		if(!ProgressionCore.proxy.isClient())
+			sendUpdatePacket();
 	}
 }

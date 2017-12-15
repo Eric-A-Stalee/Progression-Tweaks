@@ -1,10 +1,14 @@
 package com.theprogrammingturkey.progressiontweaks.items;
 
+import com.google.common.collect.Multimap;
 import com.theprogrammingturkey.gobblecore.items.BaseItem;
 import com.theprogrammingturkey.progressiontweaks.entity.EntityTomahawk;
 
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -42,5 +46,18 @@ public class ItemTomahawk extends BaseItem
 
 		playerIn.addStat(StatList.getObjectUseStats(this));
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+	}
+
+	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
+	{
+		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
+
+		if(equipmentSlot == EntityEquipmentSlot.MAINHAND)
+		{
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 2, 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -1.5D, 0));
+		}
+
+		return multimap;
 	}
 }
