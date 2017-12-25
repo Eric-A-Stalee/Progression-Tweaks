@@ -3,6 +3,8 @@ itemGroup.progressiontweaks=Progression Tweaks
 tile.fire_pit_unlit.name=Fire Pit
 tile.fire_pit_lit.name=Fire Pit
 tile.blank_teleporter.name=Blank Teleporter
+tile.machine_frame.name=Machine Frame
+tile.nanomachine_frame.name=Nano-Machine Frame
 
 item.fire_pit_unlit.name=Fire Pit
 item.lime.name=Lime

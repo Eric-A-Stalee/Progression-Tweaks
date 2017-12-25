@@ -1,0 +1,10 @@
+{
+    "parent": "progressiontweaks:block/nanomachine_frame",
+    "display": {
+          "thirdperson": {
+              "rotation": [ 10, 0, 170 ],
+              "translation": [ 0, 0, 0 ],
+              "scale": [ 0.75, 0.75, 0.75 ]
+          }
+      }
+}

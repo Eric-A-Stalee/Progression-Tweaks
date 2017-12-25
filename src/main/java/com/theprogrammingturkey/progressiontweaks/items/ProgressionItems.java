@@ -40,6 +40,8 @@ public class ProgressionItems implements IItemHandler
 
 		loader.registerBlockItem(ProgressionBlocks.FIRE_PIT_UNLIT);
 		loader.registerBlockItem(ProgressionBlocks.BLANK_TELEPORTER);
+		loader.registerBlockItem(ProgressionBlocks.MACHINE_FRAME);
+		loader.registerBlockItem(ProgressionBlocks.NANOMACHINE_FRAME);
 
 		BaseItemBlock teleporter = (BaseItemBlock) Item.getItemFromBlock(ProgressionBlocks.BLANK_TELEPORTER);
 		teleporter.addLore("As dark as my soul...");
