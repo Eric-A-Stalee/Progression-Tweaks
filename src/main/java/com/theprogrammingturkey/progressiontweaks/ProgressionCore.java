@@ -35,7 +35,7 @@ public class ProgressionCore implements IModCore
 {
 	public static final String MODID = "progressiontweaks";
 	public static final String NAME = "Progression Tweaks";
-	public static final String VERSION = "@Version@";
+	public static final String VERSION = "@VERSION@";
 
 	@Instance(value = MODID)
 	public static ProgressionCore instance;
