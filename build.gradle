@@ -38,6 +38,7 @@ minecraft {
     
     replace "@VERSION@", project.version
     replaceIn "ProgressionCore.java"
+    replaceIn "mcmod.info"
 }
 
 repositories {
