@@ -236,7 +236,6 @@ public class TileFirePit extends TileEntity implements ITickable
 		if(this.cooking != null)
 			this.cooking.writeToNBT(cookingNBT);
 		nbt.setTag("cookingItem", cookingNBT);
-		System.out.println(nbt.toString());
 		return nbt;
 	}
 
@@ -246,7 +245,6 @@ public class TileFirePit extends TileEntity implements ITickable
 		super.readFromNBT(nbt);
 		this.burnTimeLeft = nbt.getInteger("burnTime");
 		this.cookTimeLeft = nbt.getInteger("cookTimeLeft");
-		System.out.println(nbt.toString());
 		if(nbt.getTag("cookingItem") != null)
 		{
 			

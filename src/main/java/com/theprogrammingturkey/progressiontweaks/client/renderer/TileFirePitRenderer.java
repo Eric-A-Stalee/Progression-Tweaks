@@ -26,8 +26,6 @@ public class TileFirePitRenderer extends TileEntitySpecialRenderer<TileFirePit>
 
 		if(!world.getBlockState(te.getPos()).getBlock().equals(ProgressionBlocks.FIRE_PIT_LIT) && !world.getBlockState(te.getPos()).getBlock().equals(ProgressionBlocks.FIRE_PIT_UNLIT))
 			return;
-		//System.out.println(te);
-		//System.out.println(te.getItemCooking());
 		if(te.getItemCooking() != null)
 		{
 			if(cooking == null)
