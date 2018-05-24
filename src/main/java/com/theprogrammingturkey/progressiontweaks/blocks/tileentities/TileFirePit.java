@@ -30,9 +30,11 @@ public class TileFirePit extends TileEntity implements ITickable
 	private int burnTimeLeft = -1;
 	private int cookTimeLeft = -1;
 
+	private Task task;
+
 	public TileFirePit()
 	{
-		Scheduler.scheduleTask(new Task("Fire_Pit_Mob_Attract", -1, 20)
+		task = new Task("Fire_Pit_Mob_Attract", -1, 20)
 		{
 			@Override
 			public void callback()
@@ -80,8 +82,19 @@ public class TileFirePit extends TileEntity implements ITickable
 					}
 				}
 			}
+		};
+	}
 
-		});
+	public void onLoad()
+	{
+		// To make sure it's removed
+		Scheduler.removeTask(task);
+		Scheduler.scheduleTask(task);
+	}
+
+	public void onChunkUnload()
+	{
+		Scheduler.removeTask(task);
 	}
 
 	@Override
