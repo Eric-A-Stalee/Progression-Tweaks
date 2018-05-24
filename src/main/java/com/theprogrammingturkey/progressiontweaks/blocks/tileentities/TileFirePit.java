@@ -50,31 +50,33 @@ public class TileFirePit extends TileEntity implements ITickable
 						Scheduler.removeTask(this);
 						return;
 					}
-
-					TileEntity tileentity = worldObj.getTileEntity(pos);
-					if(tileentity != null && tileentity.equals(TileFirePit.this))
+					if(worldObj.isBlockLoaded(pos))
 					{
-						EntityPlayer toAttack = null;
-						for(EntityPlayer player : worldObj.playerEntities)
+						TileEntity tileentity = worldObj.getTileEntity(pos);
+						if(tileentity != null && tileentity instanceof TileFirePit)
 						{
-							if(player.getPosition().distanceSq(getPos()) < 10)
+							EntityPlayer toAttack = null;
+							for(EntityPlayer player : worldObj.playerEntities)
 							{
-								toAttack = player;
-								break;
+								if(player.getPosition().distanceSq(getPos()) < 10)
+								{
+									toAttack = player;
+									break;
+								}
+							}
+							if(toAttack != null)
+							{
+								int radius = ProgressionSettings.firePitAttractionRadius;
+								List<EntityMob> entities = worldObj.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB(getPos().add(radius, radius, radius), getPos().add(-radius, -radius, -radius)));
+								for(EntityMob ent : entities)
+									if(ent.getAttackTarget() == null)
+										ent.setAttackTarget(toAttack);
 							}
 						}
-						if(toAttack != null)
+						else
 						{
-							int radius = ProgressionSettings.firePitAttractionRadius;
-							List<EntityMob> entities = worldObj.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB(getPos().add(radius, radius, radius), getPos().add(-radius, -radius, -radius)));
-							for(EntityMob ent : entities)
-								if(ent.getAttackTarget() == null)
-									ent.setAttackTarget(toAttack);
+							Scheduler.removeTask(this);
 						}
-					}
-					else
-					{
-						Scheduler.removeTask(this);
 					}
 				}
 			}
@@ -247,7 +249,7 @@ public class TileFirePit extends TileEntity implements ITickable
 		this.cookTimeLeft = nbt.getInteger("cookTimeLeft");
 		if(nbt.getTag("cookingItem") != null)
 		{
-			
+
 			this.cooking = new ItemStack((NBTTagCompound) nbt.getTag("cookingItem"));
 		}
 
