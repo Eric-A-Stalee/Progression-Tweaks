@@ -46,12 +46,12 @@ repositories {
 	
     maven { // The repo from which to get GobbleCore
         name "GobbleCore Repo"
-        url "http://maven.theprogrammingturkey.com/"
+        url "https://jitpack.io"
     }
 }
 
 dependencies {
-	compile "com.theprogrammingturkey.gobblecore:GobbleCore:1.12-0.1.6.31"
+	compile "com.github.TheTurkeyDev:GobbleCore:mc_1.12-SNAPSHOT"
 }
 
 processResources
